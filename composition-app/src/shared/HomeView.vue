@@ -4,6 +4,6 @@
 
 <template>
   <main>
-    <h1>asdfasdfs </h1>
+    <h1> HOME HOME </h1>
   </main>
 </template>
