@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface Props {
-  title?: string
+  title?: string,
+  default
 }
 
 defineProps<Props>()
@@ -9,7 +10,7 @@ defineProps<Props>()
 <template>
   <nav class="navbar">
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
-    <span> {{ $props.title }}</span>
+    <span v-if="$props.title"> {{ $props.title }}</span>
 
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/about">About</RouterLink>
