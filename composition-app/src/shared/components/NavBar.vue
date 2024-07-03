@@ -1,24 +1,19 @@
 <script setup lang="ts">
+interface Props {
+  title?: string
+}
 
-  interface Props {
-    title?:string;
-  }
-
-  defineProps<Props>();
-
+defineProps<Props>()
 </script>
-
-
-
 
 <template>
   <nav class="navbar">
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
-    <span class="title">Compo App</span>
+    <span> {{ $props.title }}</span>
 
-    <RouterLink to="/" class="nav-link">Home</RouterLink>
-    <RouterLink to="/about" class="nav-link">About</RouterLink>
-    <RouterLink to="/counter" class="nav-link">Counter</RouterLink>
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/counter">Counter</RouterLink>
   </nav>
 </template>
 
