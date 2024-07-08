@@ -20,6 +20,12 @@ const routerLinks: RouterLink[] =
 <template>
   <NavBar :links="routerLinks" is-secondary />
   <div>
-    <RouterView />
+    <!-- <Suspense> -->
+
+      <RouterView />
+      <!-- <template #fallback>
+        Loading...
+      </template>
+    </Suspense> -->
   </div>
 </template>
