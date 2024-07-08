@@ -1,39 +1,39 @@
 <script setup lang="ts">
+import type { RouterLink } from '@/router/list-routes.ts';
+
 interface Props {
   title?: string,
-  default
+  links: RouterLink[];
+  isSecondary?: boolean
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  title: 'Compo app',
+  isSecondary: false
+})
+
+
 </script>
 
 <template>
-  <nav class="navbar">
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="25" height="25" />
-    <span v-if="$props.title"> {{ $props.title }}</span>
+  <nav>
+    <template v-if="!$props.isSecondary">
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="20" height="20" />
+      <span v-if="$props.title"> {{ $props.title }}</span>
+    </template>
 
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
-    <RouterLink to="/counter">Counter</RouterLink>
+    <RouterLink v-for="link in $props.links" :key="link.name" :to="link.path">
+      {{ link.title }}
+    </RouterLink>
+
   </nav>
 </template>
 
 <style scoped>
 .navbar {
-  position: fixed;
   top: 0;
   background-color: #333;
   left: 0;
-  /*display: flex;
-  align-items: center;
-  padding: 10px;
-  z-index: 1000;
-  text-align: left;
-  margin-left: -1rem;
-  font-size: 1rem;
-
-  padding: 1rem 0;
-  margin-top: 1rem; */
 }
 
 .logo {
@@ -42,7 +42,7 @@ defineProps<Props>()
 }
 
 .title {
-  color: white;
+  color: rgb(237, 230, 230);
   margin-right: 30px;
   font-size: 1.5em;
 }
@@ -54,7 +54,7 @@ nav {
   margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
+nav a.router-link-active {
   color: var(--color-text);
 }
 
