@@ -1,13 +1,14 @@
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { getPokemons } from "../helpers/get-pokemons";
 import type { Pokemon } from "../interfaces";
 
+const pokemons = ref<Pokemon[]>([])
+const isLoading = ref(true);
+
 export const usePokemons = () => {
 
-    const pokemons = ref<Pokemon[]>([])
-    const isLoading = ref(true);
-
-    getPokemons().then(data => {
+    onMounted(async () => {
+        const data = await getPokemons();
         pokemons.value = data;
         isLoading.value = false;
     });
@@ -15,7 +16,7 @@ export const usePokemons = () => {
     return {
         pokemons,
         isLoading,
-        count: computed(() => pokemons.value.length)        
+        count: computed(() => pokemons.value.length)
     }
 }
 
